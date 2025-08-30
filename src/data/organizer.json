@@ -1,0 +1,18 @@
+[
+  {
+    "roomId": "P-205",
+    "issues": ["Projector not working", "Internet is down"]
+  },
+  {
+    "roomId": "N-101",
+    "issues": []
+  },
+  {
+    "roomId": "P-303",
+    "issues": ["Broken chair"]
+  },
+  {
+    "roomId": "N-210",
+    "issues": ["Projector flickering", "Loose wires", "Fan not working"]
+  }
+]

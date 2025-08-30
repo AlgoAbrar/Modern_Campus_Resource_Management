@@ -1,0 +1,26 @@
+[
+  {
+    "roomId": "P-205",
+    "location": "Panaroma 2nd floor",
+    "capacity": 40,
+    "isAvailable": true
+  },
+  {
+    "roomId": "N-101",
+    "location": "Nexus Ground floor",
+    "capacity": 30,
+    "isAvailable": false
+  },
+  {
+    "roomId": "P-303",
+    "location": "Panaroma 3rd floor",
+    "capacity": 50,
+    "isAvailable": true
+  },
+  {
+    "roomId": "N-210",
+    "location": "Nexus 2nd floor",
+    "capacity": 35,
+    "isAvailable": false
+  }
+]
