@@ -5,7 +5,7 @@ A responsive web application for campus management built with React, TypeScript,
 ## Features
 
 - **Role-based Authentication**: Admin/Authority, Class Representative (CR), and Student roles
-- **Room Management**: Real-time status tracking for Paranoma Building (student classrooms) and Nexas Building (faculty rooms)
+- **Room Management**: Real-time status tracking for Panaroma Building (student classrooms) and Nexus Building (faculty rooms)
 - **Equipment Tracking**: Monitor projectors, ACs, smart boards, and other classroom equipment
 - **Anonymous Complaints**: Students can submit complaints without logging in
 - **Lab Assistant Assignment**: Authority and CR users can assign lab assistants to rooms
@@ -92,11 +92,11 @@ The system supports three user roles:
 
 ## Building Management
 
-### Paranoma Building (Student Classrooms)
+### Panaroma Building (Student Classrooms)
 - Rooms: P101-P110, P201-P210, P301-P310
 - Features: Equipment status, complaint submission, history tracking
 
-### Nexas Building (Faculty Rooms)
+### Nexus Building (Faculty Rooms)
 - Displays as "Faculty Room" with distinctive badges
 - Faculty-only access with enhanced privacy
 

@@ -1,4 +1,4 @@
-import { Building2, Mail, Phone } from 'lucide-react';
+import { Building2, Mail, Phone } from "lucide-react";
 
 interface FooterProps {
   scrollToSection: (sectionId: string) => void;
@@ -6,9 +6,9 @@ interface FooterProps {
 
 export function Footer({ scrollToSection }: FooterProps) {
   const quickLinks = [
-    { label: 'Home', id: 'hero' },
-    { label: 'Room Status', id: 'room-status' },
-    { label: 'Report Problem', id: 'report-problem' },
+    { label: "Home", id: "hero" },
+    { label: "Room Status", id: "room-status" },
+    { label: "Report Problem", id: "report-problem" },
   ];
 
   return (
@@ -20,13 +20,17 @@ export function Footer({ scrollToSection }: FooterProps) {
             <div className="flex items-center gap-3 mb-4">
               <Building2 className="h-8 w-8 text-blue-400" />
               <div>
-                <h3 className="text-lg font-semibold">CSE Smart Classroom Manager</h3>
-                <p className="text-sm text-gray-400">Computer Science & Engineering</p>
+                <h3 className="text-lg font-semibold">
+                  CSE Smart Classroom Manager
+                </h3>
+                <p className="text-sm text-gray-400">
+                  Computer Science & Engineering
+                </p>
               </div>
             </div>
             <p className="text-gray-300 mb-4 max-w-md">
-              Streamlining classroom management for the CSE department with real-time 
-              availability tracking and anonymous issue reporting.
+              Streamlining classroom management for the CSE department with
+              real-time availability tracking and anonymous issue reporting.
             </p>
             <div className="text-sm text-gray-400">
               <p className="mb-1">Campus-only • Beginner version</p>
@@ -61,11 +65,13 @@ export function Footer({ scrollToSection }: FooterProps) {
               </div>
               <div className="flex items-center gap-2 text-gray-300">
                 <Phone className="h-4 w-4 text-blue-400" />
-                <span className="text-sm">+91 XXX XXX XXXX</span>
+                <span className="text-sm">+8801719718686</span>
               </div>
               <div className="flex items-center gap-2 text-gray-300">
                 <Building2 className="h-4 w-4 text-blue-400" />
-                <span className="text-sm">P-Block, Main Campus</span>
+                <span className="text-sm">
+                  Bangladesh Army University of Engineering & Technology
+                </span>
               </div>
             </div>
           </div>
@@ -74,9 +80,7 @@ export function Footer({ scrollToSection }: FooterProps) {
         {/* Bottom Section */}
         <div className="border-t border-gray-800 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-gray-400">
-              © 2024 Modern Campus Management. All rights reserved.
-            </p>
+            <p className="text-sm text-gray-400">Made by Hawa, Maruf, Abrar</p>
             <div className="flex items-center gap-6 text-sm text-gray-400">
               <button className="hover:text-blue-400 transition-colors duration-200 focus:outline-none focus:text-blue-400">
                 Privacy Policy

@@ -5,7 +5,7 @@ A responsive web application for campus management built with React, TypeScript,
 ## Features
 
 - **Role-based Authentication**: Admin/Authority, Class Representative (CR), and Student roles
-- **Room Management**: Real-time status tracking for Paranoma Building (student classrooms) and Nexas Building (faculty rooms)
+- **Room Management**: Real-time status tracking for Panaroma Building (student classrooms) and Nexus Building (faculty rooms)
 - **Equipment Tracking**: Monitor projectors, ACs, smart boards, and other classroom equipment
 - **Anonymous Complaints**: Students can submit complaints without logging in
 - **Lab Assistant Assignment**: Authority and CR users can assign lab assistants to rooms
@@ -34,12 +34,14 @@ A responsive web application for campus management built with React, TypeScript,
 ### Installation
 
 1. Clone the repository
+
 ```bash
 git clone <your-repo-url>
 cd modern-campus-management
 ```
 
 2. Install dependencies
+
 ```bash
 npm install
 # or
@@ -47,6 +49,7 @@ yarn install
 ```
 
 3. Start the development server
+
 ```bash
 npm run dev
 # or
@@ -92,17 +95,20 @@ The system supports three user roles:
 
 ## Building Management
 
-### Paranoma Building (Student Classrooms)
+### Panaroma Building (Student Classrooms)
+
 - Rooms: P101-P110, P201-P210, P301-P310
 - Features: Equipment status, complaint submission, history tracking
 
-### Nexas Building (Faculty Rooms)
+### Nexus Building (Faculty Rooms)
+
 - Displays as "Faculty Room" with distinctive badges
 - Faculty-only access with enhanced privacy
 
 ## Theme Customization
 
 The application supports:
+
 - **Color Themes**: Blue (default) and Purple
 - **Display Modes**: Light and Dark
 - **Responsive Typography**: Minimum 16px font size on mobile

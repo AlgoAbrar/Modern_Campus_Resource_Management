@@ -1,17 +1,34 @@
-import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Badge } from './ui/badge';
-import { Button } from './ui/button';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
-import { ChevronDown, ChevronRight, Monitor, Computer, Fan, Lightbulb, Info } from 'lucide-react';
-import { LabAssignmentDropdown } from './LabAssignmentDropdown';
-import { HistoryTimeline } from './HistoryTimeline';
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Badge } from "./ui/badge";
+import { Button } from "./ui/button";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "./ui/collapsible";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./ui/tooltip";
+import {
+  ChevronDown,
+  ChevronRight,
+  Monitor,
+  Computer,
+  Fan,
+  Lightbulb,
+  Info,
+} from "lucide-react";
+import { LabAssignmentDropdown } from "./LabAssignmentDropdown";
+import { HistoryTimeline } from "./HistoryTimeline";
 
 interface EquipmentStatus {
-  type: 'projector' | 'pcs' | 'fan-light';
+  type: "projector" | "pcs" | "fan-light";
   label: string;
-  status: 'working' | 'issue';
+  status: "working" | "issue";
   icon: React.ReactNode;
 }
 
@@ -19,7 +36,7 @@ interface RoomOrganizer {
   roomId: string;
   equipment: EquipmentStatus[];
   assignedTo?: string;
-  buildingType: 'paranoma' | 'nexas';
+  buildingType: "Panaroma" | "Nexus";
   isFacultyOnly?: boolean;
 }
 
@@ -28,117 +45,177 @@ interface HistoryEntry {
   date: string;
   action: string;
   user: string;
-  role: 'student' | 'cr' | 'authority';
+  role: "student" | "cr" | "authority";
   assignedTo?: string;
-  status: 'reported' | 'assigned' | 'confirmed' | 'resolved';
+  status: "reported" | "assigned" | "confirmed" | "resolved";
 }
 
 const SAMPLE_ORGANIZER_DATA: RoomOrganizer[] = [
   {
-    roomId: 'P-202',
-    buildingType: 'paranoma',
-    assignedTo: 'Md. Harun-Or-Rashid',
+    roomId: "P-202",
+    buildingType: "Panaroma",
+    assignedTo: "Md. Harun-Or-Rashid",
     equipment: [
-      { type: 'projector', label: 'Projector', status: 'working', icon: <Monitor className="h-4 w-4" /> },
-      { type: 'pcs', label: 'PCs', status: 'working', icon: <Computer className="h-4 w-4" /> },
-      { type: 'fan-light', label: 'Fan/Light', status: 'issue', icon: <Lightbulb className="h-4 w-4" /> },
-    ]
+      {
+        type: "projector",
+        label: "Projector",
+        status: "working",
+        icon: <Monitor className="h-4 w-4" />,
+      },
+      {
+        type: "pcs",
+        label: "PCs",
+        status: "working",
+        icon: <Computer className="h-4 w-4" />,
+      },
+      {
+        type: "fan-light",
+        label: "Fan/Light",
+        status: "issue",
+        icon: <Lightbulb className="h-4 w-4" />,
+      },
+    ],
   },
   {
-    roomId: 'P-205',
-    buildingType: 'paranoma',
+    roomId: "P-205",
+    buildingType: "Panaroma",
     equipment: [
-      { type: 'projector', label: 'Projector', status: 'issue', icon: <Monitor className="h-4 w-4" /> },
-      { type: 'pcs', label: 'PCs', status: 'working', icon: <Computer className="h-4 w-4" /> },
-      { type: 'fan-light', label: 'Fan/Light', status: 'working', icon: <Fan className="h-4 w-4" /> },
-    ]
+      {
+        type: "projector",
+        label: "Projector",
+        status: "issue",
+        icon: <Monitor className="h-4 w-4" />,
+      },
+      {
+        type: "pcs",
+        label: "PCs",
+        status: "working",
+        icon: <Computer className="h-4 w-4" />,
+      },
+      {
+        type: "fan-light",
+        label: "Fan/Light",
+        status: "working",
+        icon: <Fan className="h-4 w-4" />,
+      },
+    ],
   },
   {
-    roomId: 'P-307',
-    buildingType: 'paranoma',
-    assignedTo: 'Md. Nahidul Islam',
+    roomId: "P-307",
+    buildingType: "Panaroma",
+    assignedTo: "Md. Nahidul Islam",
     equipment: [
-      { type: 'projector', label: 'Projector', status: 'working', icon: <Monitor className="h-4 w-4" /> },
-      { type: 'pcs', label: 'PCs', status: 'issue', icon: <Computer className="h-4 w-4" /> },
-      { type: 'fan-light', label: 'Fan/Light', status: 'working', icon: <Fan className="h-4 w-4" /> },
-    ]
+      {
+        type: "projector",
+        label: "Projector",
+        status: "working",
+        icon: <Monitor className="h-4 w-4" />,
+      },
+      {
+        type: "pcs",
+        label: "PCs",
+        status: "issue",
+        icon: <Computer className="h-4 w-4" />,
+      },
+      {
+        type: "fan-light",
+        label: "Fan/Light",
+        status: "working",
+        icon: <Fan className="h-4 w-4" />,
+      },
+    ],
   },
   {
-    roomId: 'P-314',
-    buildingType: 'paranoma',
+    roomId: "P-314",
+    buildingType: "Panaroma",
     equipment: [
-      { type: 'projector', label: 'Projector', status: 'working', icon: <Monitor className="h-4 w-4" /> },
-      { type: 'pcs', label: 'PCs', status: 'working', icon: <Computer className="h-4 w-4" /> },
-      { type: 'fan-light', label: 'Fan/Light', status: 'working', icon: <Fan className="h-4 w-4" /> },
-    ]
+      {
+        type: "projector",
+        label: "Projector",
+        status: "working",
+        icon: <Monitor className="h-4 w-4" />,
+      },
+      {
+        type: "pcs",
+        label: "PCs",
+        status: "working",
+        icon: <Computer className="h-4 w-4" />,
+      },
+      {
+        type: "fan-light",
+        label: "Fan/Light",
+        status: "working",
+        icon: <Fan className="h-4 w-4" />,
+      },
+    ],
   },
 ];
 
 const SAMPLE_HISTORY_DATA: Record<string, HistoryEntry[]> = {
-  'P-202': [
+  "P-202": [
     {
-      id: '1',
-      date: 'Aug 28, 2025',
-      action: 'Reported fan not working properly',
-      user: 'Anonymous Student',
-      role: 'student',
-      status: 'reported'
+      id: "1",
+      date: "Aug 28, 2025",
+      action: "Reported fan not working properly",
+      user: "Anonymous Student",
+      role: "student",
+      status: "reported",
     },
     {
-      id: '2',
-      date: 'Aug 28, 2025',
-      action: 'Assigned to lab assistant for repair',
-      user: 'Dr. Rahman',
-      role: 'authority',
-      assignedTo: 'Md. Harun-Or-Rashid',
-      status: 'assigned'
-    }
+      id: "2",
+      date: "Aug 28, 2025",
+      action: "Assigned to lab assistant for repair",
+      user: "Dr. Rahman",
+      role: "authority",
+      assignedTo: "Md. Harun-Or-Rashid",
+      status: "assigned",
+    },
   ],
-  'P-205': [
+  "P-205": [
     {
-      id: '3',
-      date: 'Aug 27, 2025',
-      action: 'Projector showing blue screen',
-      user: 'Rajesh Kumar (CR)',
-      role: 'cr',
-      status: 'reported'
-    }
+      id: "3",
+      date: "Aug 27, 2025",
+      action: "Projector showing blue screen",
+      user: "Rajesh Kumar (CR)",
+      role: "cr",
+      status: "reported",
+    },
   ],
-  'P-307': [
+  "P-307": [
     {
-      id: '4',
-      date: 'Aug 26, 2025',
-      action: 'Multiple PC units not booting',
-      user: 'Anonymous Student',
-      role: 'student',
-      status: 'reported'
+      id: "4",
+      date: "Aug 26, 2025",
+      action: "Multiple PC units not booting",
+      user: "Anonymous Student",
+      role: "student",
+      status: "reported",
     },
     {
-      id: '5',
-      date: 'Aug 26, 2025',
-      action: 'Emergency assignment by CR',
-      user: 'Fatima Ali (CR)',
-      role: 'cr',
-      assignedTo: 'Md. Nahidul Islam',
-      status: 'assigned'
+      id: "5",
+      date: "Aug 26, 2025",
+      action: "Emergency assignment by CR",
+      user: "Fatima Ali (CR)",
+      role: "cr",
+      assignedTo: "Md. Nahidul Islam",
+      status: "assigned",
     },
     {
-      id: '6',
-      date: 'Aug 27, 2025',
-      action: 'Assignment confirmed by authority',
-      user: 'Prof. Sharma',
-      role: 'authority',
-      status: 'confirmed'
-    }
-  ]
+      id: "6",
+      date: "Aug 27, 2025",
+      action: "Assignment confirmed by authority",
+      user: "Prof. Sharma",
+      role: "authority",
+      status: "confirmed",
+    },
+  ],
 };
 
 export function OrganizerSection() {
   const [openRooms, setOpenRooms] = useState<Set<string>>(new Set());
-  const [userRole] = useState<'student' | 'cr' | 'authority'>('student'); // Mock user role
+  const [userRole] = useState<"student" | "cr" | "authority">("student"); // Mock user role
   const [assignments, setAssignments] = useState<Record<string, string>>({
-    'P-202': 'Md. Harun-Or-Rashid',
-    'P-307': 'Md. Nahidul Islam'
+    "P-202": "Md. Harun-Or-Rashid",
+    "P-307": "Md. Nahidul Islam",
   });
 
   const toggleRoom = (roomId: string) => {
@@ -152,9 +229,9 @@ export function OrganizerSection() {
   };
 
   const handleAssignment = (roomId: string, assistantId: string) => {
-    setAssignments(prev => ({
+    setAssignments((prev) => ({
       ...prev,
-      [roomId]: assistantId
+      [roomId]: assistantId,
     }));
   };
 
@@ -166,15 +243,16 @@ export function OrganizerSection() {
             Classroom Organizer
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Quickly see whether essential classroom equipment is working properly
+            Quickly see whether essential classroom equipment is working
+            properly
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
           {SAMPLE_ORGANIZER_DATA.map((room) => (
             <Card key={room.roomId} className="border border-border">
-              <Collapsible 
-                open={openRooms.has(room.roomId)} 
+              <Collapsible
+                open={openRooms.has(room.roomId)}
                 onOpenChange={() => toggleRoom(room.roomId)}
               >
                 <CollapsibleTrigger asChild>
@@ -185,17 +263,24 @@ export function OrganizerSection() {
                           Room {room.roomId}
                         </CardTitle>
                         {room.isFacultyOnly && (
-                          <Badge variant="outline" className="text-xs bg-purple-50 text-purple-700 border-purple-200">
+                          <Badge
+                            variant="outline"
+                            className="text-xs bg-purple-50 text-purple-700 border-purple-200"
+                          >
                             Faculty Only
                           </Badge>
                         )}
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="text-sm text-muted-foreground">
-                          {room.equipment.filter(eq => eq.status === 'issue').length > 0 
-                            ? `${room.equipment.filter(eq => eq.status === 'issue').length} issue(s)`
-                            : 'All working'
-                          }
+                          {room.equipment.filter((eq) => eq.status === "issue")
+                            .length > 0
+                            ? `${
+                                room.equipment.filter(
+                                  (eq) => eq.status === "issue"
+                                ).length
+                              } issue(s)`
+                            : "All working"}
                         </span>
                         {openRooms.has(room.roomId) ? (
                           <ChevronDown className="h-5 w-5 text-muted-foreground" />
@@ -206,12 +291,15 @@ export function OrganizerSection() {
                     </div>
                   </CardHeader>
                 </CollapsibleTrigger>
-                
+
                 <CollapsibleContent>
                   <CardContent className="space-y-4">
                     {/* Equipment Status */}
                     {room.equipment.map((equipment) => (
-                      <div key={equipment.type} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
+                      <div
+                        key={equipment.type}
+                        className="flex items-center justify-between p-3 bg-muted/50 rounded-lg"
+                      >
                         <div className="flex items-center gap-3">
                           <div className="text-muted-foreground">
                             {equipment.icon}
@@ -220,26 +308,34 @@ export function OrganizerSection() {
                             {equipment.label}
                           </span>
                         </div>
-                        
+
                         <div className="flex items-center gap-2">
-                          <Badge 
-                            variant={equipment.status === 'working' ? 'default' : 'destructive'}
+                          <Badge
+                            variant={
+                              equipment.status === "working"
+                                ? "default"
+                                : "destructive"
+                            }
                             className={`font-medium ${
-                              equipment.status === 'working' 
-                                ? 'bg-[var(--success-green)] text-white hover:bg-[var(--success-green)]/90'
-                                : 'bg-[var(--alert-red)] text-white hover:bg-[var(--alert-red)]/90'
+                              equipment.status === "working"
+                                ? "bg-[var(--success-green)] text-white hover:bg-[var(--success-green)]/90"
+                                : "bg-[var(--alert-red)] text-white hover:bg-[var(--alert-red)]/90"
                             }`}
                           >
-                            {equipment.status === 'working' ? 'Working' : 'Issue'}
+                            {equipment.status === "working"
+                              ? "Working"
+                              : "Issue"}
                           </Badge>
-                          
+
                           <TooltipProvider>
                             <Tooltip>
                               <TooltipTrigger>
                                 <Info className="h-4 w-4 text-muted-foreground" />
                               </TooltipTrigger>
                               <TooltipContent>
-                                <p className="text-sm">Only CR/Admin can update status</p>
+                                <p className="text-sm">
+                                  Only CR/Admin can update status
+                                </p>
                               </TooltipContent>
                             </Tooltip>
                           </TooltipProvider>
@@ -249,11 +345,15 @@ export function OrganizerSection() {
 
                     {/* Lab Assistant Assignment */}
                     <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-                      <h4 className="font-medium text-foreground mb-3">Lab Assistant Assignment</h4>
+                      <h4 className="font-medium text-foreground mb-3">
+                        Lab Assistant Assignment
+                      </h4>
                       <LabAssignmentDropdown
                         userRole={userRole}
                         currentAssignee={assignments[room.roomId]}
-                        onAssign={(assistantId) => handleAssignment(room.roomId, assistantId)}
+                        onAssign={(assistantId) =>
+                          handleAssignment(room.roomId, assistantId)
+                        }
                       />
                     </div>
 
@@ -263,13 +363,17 @@ export function OrganizerSection() {
                       entries={SAMPLE_HISTORY_DATA[room.roomId] || []}
                       className="mt-4"
                     />
-                    
+
                     <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
                       <p className="text-sm text-blue-800 dark:text-blue-200 flex items-center gap-2">
                         <Info className="h-4 w-4" />
                         <span>
-                          <strong>Students (view-only):</strong> You can see the status but cannot update it.{' '}
-                          <Button variant="link" className="p-0 h-auto text-blue-800 dark:text-blue-200 underline font-medium">
+                          <strong>Students (view-only):</strong> You can see the
+                          status but cannot update it.{" "}
+                          <Button
+                            variant="link"
+                            className="p-0 h-auto text-blue-800 dark:text-blue-200 underline font-medium"
+                          >
                             Login as CR/Admin to update
                           </Button>
                         </span>
